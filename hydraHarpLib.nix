@@ -14,13 +14,11 @@ src = fetchurl {
 unpackPhase = ''
     unzip ${src}
     tar -xvf HydraHarp\ HHLib\ v${version}/Linux/64bit/hhlibv${version}-linux-64bit.tar.gz
-    ls
 '';
 
 installPhase = ''
     mkdir -p $out/lib
     mkdir -p $out/include
-    ls hhlibv${version}-linux-64bit/library/
     cp hhlibv${version}-linux-64bit/library/*.h $out/include
     cp hhlibv${version}-linux-64bit/library/hhlib.so $out/lib
 '';
