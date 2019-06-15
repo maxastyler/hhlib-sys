@@ -11,7 +11,7 @@ in
 	  buildInputs = [
 	    rustChannels.stable.rust
 	    rustChannels.stable.cargo
-      llvmPackages.libclang
+	    llvmPackages.libclang
       hharp
 	  ];
     LIBCLANG_PATH = "${llvmPackages.libclang}/lib";
