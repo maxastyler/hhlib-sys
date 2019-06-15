@@ -21,6 +21,6 @@ stdenv.mkDerivation {
         mkdir -p $out/lib
         mkdir -p $out/include
         cp hhlibv${version}-linux-64bit/library/*.h $out/include
-        cp hhlibv${version}-linux-64bit/library/hhlib.so $out/lib
+        mv hhlibv${version}-linux-64bit/library/hhlib.so $out/lib/libhh.so
     '';
 }
