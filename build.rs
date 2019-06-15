@@ -6,7 +6,8 @@ use std::path::PathBuf;
 fn main() {
 
     let nix_cflags = env::var("NIX_CFLAGS_COMPILE").unwrap();
-    println!("cargo:rustc-link-search=/nix/store/32krsb2xn6pss05syvivqxp67pv1ma7c-hydraHarpLib-3.0.0.2/lib");
+    let hh_path = env::var("HH_PATH_LIB").unwrap();
+    println!("cargo:rustc-link-search={}", hh_path);
     println!("cargo:rustc-link-lib=hh");
 
     let bindings = bindgen::Builder::default()
