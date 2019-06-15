@@ -29,7 +29,7 @@ mod tests {
     use super::bindings::*;
     #[test]
     fn it_works() {
-        let f = crate::device::Device::open_device(0);
+        let f = crate::device::Device::open_device(7);
         assert_eq!(f, Err::<crate::device::Device, _>(crate::types::HydraHarpError::UnknownError));
     }
 }

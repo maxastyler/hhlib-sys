@@ -79,7 +79,7 @@ pub enum Warning {
     OffsetUnnecessary = WARNING_OFFSET_UNNECESSARY as isize,
 }
 
-#[derive(FromPrimitive, Debug)]
+#[derive(FromPrimitive, ToPrimitive, Debug, Clone, Copy)]
 pub enum MeasurementMode {
     Histogramming = MODE_HIST as isize,
     T2 = MODE_T2 as isize,
@@ -87,7 +87,7 @@ pub enum MeasurementMode {
     Continuous = MODE_CONT as isize,
 }
 
-#[derive(FromPrimitive, Debug)]
+#[derive(FromPrimitive, ToPrimitive, Debug, Clone, Copy)]
 pub enum ReferenceSource {
     Internal = 0,
     External = 1,
