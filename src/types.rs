@@ -1,6 +1,6 @@
 use crate::bindings::*;
 
-#[derive(FromPrimitive, Debug)]
+#[derive(FromPrimitive, Debug, PartialEq)]
 pub enum HydraHarpError {
     DeviceFailedToOpen = HH_ERROR_DEVICE_OPEN_FAIL as isize,
     DeviceBusy = HH_ERROR_DEVICE_BUSY as isize,
@@ -63,6 +63,7 @@ pub enum HydraHarpError {
     EEPROMF09 = HH_ERROR_EEPROM_F09 as isize,
     EEPROMF10 = HH_ERROR_EEPROM_F10 as isize,
     EEPROMF11 = HH_ERROR_EEPROM_F11 as isize,
+    UnknownError = HH_ERROR_EEPROM_F11 as isize - 1,
 }
 
 #[derive(FromPrimitive, Debug)]
@@ -84,4 +85,10 @@ pub enum MeasurementMode {
     T2 = MODE_T2 as isize,
     T3 = MODE_T3 as isize,
     Continuous = MODE_CONT as isize,
+}
+
+#[derive(FromPrimitive, Debug)]
+pub enum ReferenceSource {
+    Internal = 0,
+    External = 1,
 }

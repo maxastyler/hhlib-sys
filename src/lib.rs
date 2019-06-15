@@ -1,21 +1,35 @@
 #[macro_use]
 extern crate num_derive;
 
-mod bindings {
+pub mod bindings {
     include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 }
 
-mod types;
+pub mod device;
+pub mod types;
+
+use crate::types::HydraHarpError::*;
+
+/// Take a C function which returns an i32 error and return either Ok(type) or Err(ErrorCode)
+#[macro_export]
+macro_rules! error_enum_or_value {
+    ($function:expr, $value:expr) => {
+        match $function {
+            0 => Ok($value),
+            x => match num::FromPrimitive::from_i32(x) {
+                None => Err(UnknownError),
+                Some(e) => Err(e),
+            },
+        }
+    };
+}
 
 #[cfg(test)]
 mod tests {
     use super::bindings::*;
     #[test]
     fn it_works() {
-        let mut lib_array = [0i8, 0, 0, 0];
-        unsafe {
-            HH_GetLibraryVersion(lib_array.as_mut_ptr());
-        }
-        assert_eq!(lib_array, [51i8, 46, 48, 0]);
+        let f = crate::device::Device::open_device(0);
+        assert_eq!(f, Err::<crate::device::Device, _>(crate::types::HydraHarpError::UnknownError));
     }
 }
