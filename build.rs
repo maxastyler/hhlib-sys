@@ -4,8 +4,14 @@ use std::env;
 use std::path::PathBuf;
 
 fn main() {
+
+    println!("cargo:rustc-link-lib=hhlib");
+    
+    let nix_cflags = env::var("NIX_CFLAGS_COMPILE").unwrap();
+
     let bindings = bindgen::Builder::default()
-        .header("src/hh_c/hhlib.h")
+        .header("wrapper.h")
+        .clang_args(nix_cflags.split(" "))
         .generate()
         .expect("Unable to generate bindings");
 
