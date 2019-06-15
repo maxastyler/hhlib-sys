@@ -3,7 +3,7 @@ use crate::error_enum_or_value;
 use crate::types::HydraHarpError;
 use crate::types::HydraHarpError::*;
 
-/// This is a device
+/// Contains the information of the device - the number it is (0 -> 7) and the serial of it.
 #[derive(Debug, PartialEq)]
 pub struct Device {
     id: i32,
@@ -11,6 +11,7 @@ pub struct Device {
 }
 
 impl Device {
+    /// Try to open a device given a device id and return a result with either the opened device or an error
     pub fn open_device(id: i32) -> Result<Device, HydraHarpError> {
         let mut serial = [0i8; 8];
         return error_enum_or_value! {
