@@ -1,6 +1,6 @@
 use crate::bindings::*;
 
-#[derive(FromPrimitive, Debug, PartialEq)]
+#[derive(FromPrimitive, ToPrimitive, Debug, PartialEq)]
 pub enum HydraHarpError {
     DeviceFailedToOpen = HH_ERROR_DEVICE_OPEN_FAIL as isize,
     DeviceBusy = HH_ERROR_DEVICE_BUSY as isize,
